@@ -16,18 +16,24 @@ import { Section, SectionItem } from '../../types';
 export class AssignmentPage {
   private readonly storage = inject(SectionStorage);
 
-  // โหลดข้อมูล number[][] มาแปลงเป็น Section[] เพื่อใช้งาน
-  protected readonly sections = signal<Section[]>(toSections(this.storage.get()));
+  // แก้ไขตรงนี้: ตรวจสอบว่าถ้าโหลดมาแล้วว่าง (length == 0) ให้ใส่ [createSection()] เป็นค่าเริ่มต้น
+  protected readonly sections = signal<Section[]>(
+    (() => {
+      const loaded = toSections(this.storage.get());
+      return loaded.length > 0 ? loaded : [createSection()];
+    })(),
+  );
 
   constructor() {
     effect(() => {
-      // แปลงกลับเป็น number[][] ก่อนบันทึกลง Storage
       const rawData = fromSections(this.sections());
       this.storage.set(rawData);
     });
   }
 
   protected addSection(): void {
+    // เมื่อกดปุ่มนี้ มันจะไปเรียก createSection() ใน helpers.ts
+    // ซึ่งเราแก้ให้มันมี input ติดมาด้วยแล้ว 1 อัน
     this.sections.update((sections) => [...sections, createSection()]);
   }
 
