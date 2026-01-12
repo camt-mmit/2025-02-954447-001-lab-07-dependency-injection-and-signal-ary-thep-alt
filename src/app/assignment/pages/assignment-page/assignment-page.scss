@@ -1,0 +1,37 @@
+.page-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-actions {
+  /* ใช้ Flexbox เพื่อจัดตำแหน่ง */
+  display: flex;
+  justify-content: center; /* จัดปุ่มให้อยู่กึ่งกลาง */
+  align-items: center; /* จัดแนวตั้งกึ่งกลาง */
+  position: relative; /* กำหนดขอบเขตอ้างอิงสำหรับตัวลูก */
+
+  margin-bottom: 24px;
+  min-height: 40px; /* ความสูงขั้นต่ำ */
+}
+
+.section-btn {
+  background-color: var(--app-primary-color, blue);
+  color: white;
+  padding: 8px 16px;
+}
+
+/* Style สำหรับตัวเลขจำนวน Section */
+.total-sections {
+  position: absolute; /* ลอยตัวเป็นอิสระ */
+  right: 0; /* ชิดขวาสุดของ page-actions */
+
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.empty-state {
+  text-align: center;
+  color: gray;
+  margin-top: 32px;
+}

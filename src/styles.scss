@@ -1,1 +1,279 @@
 /* You can add global styles to this file, and also import other style files */
+@use './scss/common';
+
+:root {
+  // == Static Properties ==================================================
+  --sys-brand-primary-color: #0000ff;
+  --sys-brand-secondary-color: #00ff00;
+
+  --sys-font: 'Roboto Flex', 'Noto Sans Thai Looped', sans-serif;
+  --sys-monospace-font: 'Roboto Mono', monospace;
+
+  --sys-surface-color: light-dark(#ffffff, #121212);
+  --sys-surface-container-color: light-dark(#808080, #404040);
+  --sys-on-surface-color: light-dark(#333333, #ffffff);
+  --sys-warn-color: #ff0000;
+  --sys-on-warn-color: #ffffff;
+
+  --sys-gap: 4px;
+  --sys-column-gap: calc(2 * var(--sys-gap));
+  --sys-row-gap: var(--sys-gap);
+
+  // ---- Theme Properties --------------------------------------------------
+  --sys-primary-color: light-dark(
+    var(--sys-brand-primary-color),
+    color-mix(in srgb, var(--sys-brand-primary-color), #ffffff 25%)
+  );
+  --sys-on-primary-color: #ffffff;
+
+  --sys-secondary-color: light-dark(
+    var(--sys-brand-secondary-color),
+    color-mix(in srgb, var(--sys-brand-secondary-color), #ffffff 25%)
+  );
+  --sys-on-secondary-color: #ffffff;
+
+  // == Application properties ==================================================
+  --app-font: var(--sys-font);
+  --app-monospace-font: var(--sys-monospace-font);
+
+  --app-surface-color: var(--sys-surface-color);
+  --app-surface-container-color: var(--sys-surface-container-color);
+  --app-on-surface-color: var(--sys-on-surface-color);
+  --app-warn-color: var(--sys-warn-color);
+  --app-on-warn-color: var(--sys-on-warn-color);
+
+  --app-gap: var(--sys-gap);
+  --app-column-gap: var(--sys-column-gap);
+  --app-row-gap: var(--sys-row-gap);
+
+  // ---- Theme Properties --------------------------------------------------
+  --app-primary-color: var(--sys-primary-color);
+  --app-on-primary-color: var(--sys-on-primary-color);
+
+  --app-secondary-color: var(--sys-secondary-color);
+  --app-on-secondary-color: var(--sys-on-secondary-color);
+
+  color-scheme: light dark;
+
+  color: var(--app-on-surface-color);
+  background-color: var(--app-surface-color);
+
+  font-family: var(--app-font);
+  font-size: 16px;
+
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+
+  &[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  &[data-theme='dark'] {
+    color-scheme: dark;
+  }
+}
+
+:root,
+body {
+  @include common.layout-block();
+
+  height: 100%;
+}
+
+input,
+textarea {
+  font-size: inherit;
+}
+
+.app-cmp-flex-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+
+  & > .app-cl-flex {
+    flex: 1 0 auto;
+  }
+
+  & > .app-cl-meta {
+    @include common.layout-block();
+
+    display: inline-block;
+    margin-left: auto;
+  }
+}
+
+.app-cmp-button {
+  @layer {
+    & {
+      --prop-color: var(--app-primary-color);
+      --prop-on-color: var(--app-on-primary-color);
+
+      --prop-text-color: var(--prop-color);
+      --prop-border-color: var(--prop-text-color);
+      --prop-background-color: transpalent;
+      --prop-on-hover-background-color: var(--app-surface-container-color);
+
+      --prop-border-style: 1px solid var(--prop-border-color);
+
+      &.app-cl-filled {
+        --prop-on-hover-background-color: color-mix(
+          in srgb,
+          var(--prop-background-color),
+          var(--app-surface-container-color) 25%
+        );
+      }
+    }
+  }
+
+  @include common.layout-block();
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+
+  cursor: pointer;
+
+  color: var(--prop-text-color);
+  background-color: var(--prop-background-color);
+  border: var(--prop-border-style);
+  border-radius: 4px;
+
+  padding: 0.5em 1ch;
+
+  font-weight: bold;
+
+  &:hover:not(:disabled) {
+    background-color: var(--prop-on-hover-background-color);
+  }
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+}
+
+.app-cmp-nav {
+  @layer {
+    & {
+      --prop-color: var(--app-primary-color);
+      --prop-on-color: var(--app-on-primary-color);
+
+      --prop-text-color: var(--prop-color);
+      --prop-border-color: var(--prop-text-color);
+      --prop-background-color: transpalent;
+      --prop-filling-color: var(--app-surface-container-color);
+      --prop-column-gap: var(--app-column-gap);
+      --prop-row-gap: var(--app-row-gap);
+
+      --prop-border-style: 1px solid var(--prop-border-color);
+
+      &.app-cl-filled {
+        --prop-filling-color: color-mix(
+          in srgb,
+          var(--prop-background-color),
+          var(--app-surface-container-color) 25%
+        );
+
+        & > *:not(.app-st-active):not(:hover) {
+          --prop-text-color: var(--app-on-surface-color);
+        }
+      }
+    }
+  }
+
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: var(--prop-column-gap);
+  row-gap: var(--prop-row-gap);
+
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  list-style: none;
+
+  & > * {
+    @include common.layout-block();
+
+    display: inline-block;
+
+    color: var(--prop-text-color);
+    font-weight: bold;
+    border: var(--prop-border-style);
+    border-radius: 4px;
+    overflow: hidden;
+
+    &.app-st-active {
+      background-color: var(--prop-filling-color);
+    }
+
+    &:not(.app-st-active):hover {
+      background-color: color(from var(--prop-filling-color) srgb r g b / 0.5);
+    }
+
+    & > a {
+      @include common.layout-block();
+
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: var(--prop-column-gap);
+
+      height: 100%;
+
+      padding: 0.25em 1ch;
+
+      color: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  }
+}
+
+.app-cl-code,
+input[type='number'],
+.app-cl-number {
+  font-family: var(--app-monospace-font);
+}
+
+input[type='number'],
+.app-cl-number {
+  text-align: right;
+}
+
+@layer {
+  .app-cl-warn {
+    --prop-color: var(--app-warn-color);
+    --prop-on-color: var(--app-on-warn-color);
+  }
+
+  .app-cl-secondary {
+    --prop-color: var(--app-secondary-color);
+    --prop-on-color: var(--app-on-secondary-color);
+  }
+
+  .app-cl-filled {
+    --prop-text-color: var(--prop-on-color);
+    --prop-border-color: transparent;
+    --prop-background-color: var(--prop-color);
+
+    --prop-border-style: 0px solid var(--prop-border-color);
+  }
+}
+
+// Material Symbols
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}

@@ -26,36 +26,45 @@ header {
   height: var(--prop-header-height);
 
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
+  flex-direction: column;
+  justify-content: center;
 
   & > * {
     @include common.layout-block();
 
-    flex: 1 0 auto;
-
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    column-gap: var(--prop-column-gap);
-  }
-
-  & > .-cl-float-right {
-    flex: 0 0 auto;
-    width: 0px;
-
-    align-self: center;
-
     align-items: baseline;
-    justify-content: end;
-  }
+    column-gap: var(--prop-column-gap);
 
-  .-cmp-contacts-summary {
-    display: inline-block;
-    width: 7ch;
+    & > * {
+      @include common.layout-block();
 
-    font-weight: bold;
+      flex: 1 0 auto;
+
+      display: inline-flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: center;
+    }
+
+    & > .-cl-float-right {
+      flex: 0 0 auto;
+      width: 0px;
+
+      justify-content: end;
+    }
+
+    .-cl-title {
+      @include common.layout-block();
+    }
+
+    .-cmp-contacts-summary {
+      display: inline-block;
+      width: 7ch;
+
+      font-weight: bold;
+    }
   }
 }
 

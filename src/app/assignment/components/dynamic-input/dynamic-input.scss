@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.label-text {
+  font-weight: bold;
+  width: 10ch;
+}
+
+.input-number {
+  flex: 1;
+  text-align: right;
+  margin: 0 8px;
+  padding: 4px;
+  font-family: monospace;
+}

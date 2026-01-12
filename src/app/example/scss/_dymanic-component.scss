@@ -1,0 +1,20 @@
+@use './common';
+
+:host {
+  @layer {
+    & {
+      --prop-header-background-color: var(--app-surface-color);
+      --prop-bottom-border-color: var(--app-on-surface-color);
+    }
+  }
+
+  & > header {
+    @include common.layout-block();
+
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    background-color: var(--prop-header-background-color);
+    border-bottom: 1px solid var(--prop-bottom-border-color);
+  }
+}

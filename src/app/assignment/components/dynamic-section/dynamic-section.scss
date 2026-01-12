@@ -1,0 +1,66 @@
+.section-container {
+  border: 1px solid var(--app-surface-container-color, #ccc);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  background-color: var(--app-surface-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--app-surface-container-color, #eee);
+
+  .header-left,
+  .header-right {
+    flex: 1;
+    display: flex;
+  }
+
+  .header-right {
+    justify-content: flex-end;
+  }
+
+  .header-center {
+    flex: 2;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+}
+
+/* --- ส่วนที่แก้ไข --- */
+
+.result-row {
+  display: flex;
+  align-items: center; /* จัดกึ่งกลางแนวตั้ง */
+  width: 100%;
+  margin-top: 8px; /* ระยะห่างจาก Input ตัวสุดท้าย */
+}
+
+.result-label {
+  font-weight: bold;
+  width: 10ch; /* ความกว้างเท่ากับ "Number X" ใน DynamicInput */
+}
+
+.result-value-container {
+  width: 410px; /* ยืดเต็มพื้นที่เหมือนช่อง Input */
+  margin: 0 8px; /* เว้นระยะซ้ายขวาเท่ากับช่อง Input */
+
+  display: flex; /* ใช้ Flex เพื่อจัดตัวเลขชิดขวา */
+  justify-content: flex-end;
+}
+
+.result-value {
+  border-bottom: 4px double; /* เส้นใต้ 2 เส้น */
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.spacer-button {
+  width: 42px; /* ความกว้างโดยประมาณของปุ่มลบ (Icon + Padding) */
+  display: inline-block;
+}

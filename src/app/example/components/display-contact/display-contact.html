@@ -1,0 +1,19 @@
+<header>
+  <div>
+    <span>
+      <h2 class="-cl-title">Contacts</h2>
+    </span>
+
+    <span class="-cl-float-right">
+      <span class="-cmp-contacts-summary app-cl-number">({{ contacts().length | number }})</span>
+    </span>
+  </div>
+</header>
+
+<ul class="-cmp-list">
+  @for (contact of contacts(); track contact) {
+    <li>
+      <app-display-tel [contact]="contact" [number]="$index + 1" />
+    </li>
+  }
+</ul>

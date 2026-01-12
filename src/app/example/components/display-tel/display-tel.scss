@@ -26,37 +26,44 @@ header {
   height: var(--prop-header-height);
 
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  column-gap: 1ch;
+  flex-direction: column;
+  justify-content: center;
 
-  & > label {
+  & > * {
     @include common.layout-block();
 
-    flex: 1 0 auto;
-
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     align-items: baseline;
     column-gap: 1ch;
 
-    & > input {
+    & > .-cl-title {
       @include common.layout-block();
 
       flex: 1 0 auto;
 
-      width: 20ch;
-      height: 100%;
-    }
+      display: inline-flex;
+      flex-direction: row;
+      align-items: baseline;
+      column-gap: 1ch;
 
-    .-cmp-tels-summary {
-      display: inline-block;
-      width: 5ch;
-    }
+      & > .-cl-data {
+        @include common.layout-block();
 
-    .-cl-label-no {
-      display: inline-block;
-      width: 5ch;
+        flex: 1 0 auto;
+
+        text-align: center;
+      }
+
+      .-cmp-tels-summary {
+        display: inline-block;
+        width: 5ch;
+      }
+
+      .-cl-label-no {
+        display: inline-block;
+        width: 5ch;
+      }
     }
   }
 }
@@ -73,36 +80,27 @@ ul.-cmp-list {
   padding-bottom: 16px;
 
   & > li {
-    @include common.layout-block();
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: baseline;
 
-    & > label {
+    & > b {
+      margin-right: 1ch;
+    }
+
+    & > .-cl-data {
       @include common.layout-block();
 
       flex: 1 0 auto;
 
-      display: inline-flex;
-      flex-direction: row;
-      align-items: baseline;
+      height: 100%;
 
-      & > b {
-        margin-right: 1ch;
-      }
+      text-align: right;
+    }
 
-      & > input {
-        @include common.layout-block();
-
-        flex: 1 0 auto;
-
-        height: 100%;
-      }
-
-      .-cl-label-no {
-        display: inline-block;
-        width: 3ch;
-      }
+    .-cl-label-no {
+      display: inline-block;
+      width: 3ch;
     }
   }
 }

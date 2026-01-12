@@ -1,1 +1,5 @@
-<p>example-display-page works!</p>
+@if (data(); as data) {
+  <app-display-contact [contacts]="data" />
+} @else {
+  <p>Not Found</p>
+}

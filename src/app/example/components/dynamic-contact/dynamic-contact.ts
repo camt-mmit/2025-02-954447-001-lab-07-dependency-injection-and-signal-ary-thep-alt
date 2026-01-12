@@ -1,27 +1,25 @@
+import { DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, model } from '@angular/core';
-import { DynamicTel } from '../dynamic-tel/dynamic-tel';
-import { createContact } from '../../helpers';
+import { createContact, createContacts } from '../../helpers';
 import { ContactModel } from '../../types';
+import { DynamicTel } from '../dynamic-tel/dynamic-tel';
 
 @Component({
   selector: 'app-dynamic-contact',
-  imports: [DynamicTel],
+  imports: [DynamicTel, DecimalPipe],
   templateUrl: './dynamic-contact.html',
   styleUrl: './dynamic-contact.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'article',
+  },
 })
 export class DynamicContact {
-  readonly contacts = model([createContact()]);
+  readonly contacts = model(createContacts());
 
   protected addContact(): void {
     this.contacts.update((contacts) => {
       return [...contacts, createContact()];
-    });
-  }
-
-  protected removeContact(index: number): void {
-    this.contacts.update((contacts) => {
-      return contacts.filter((_value, i) => i !== index);
     });
   }
 
@@ -32,8 +30,15 @@ export class DynamicContact {
           contact.name = value.name;
           contact.tels = value.tels;
         }
+
         return contact;
       });
+    });
+  }
+
+  protected removeContact(index: number): void {
+    this.contacts.update((contacts) => {
+      return contacts.filter((_value, i) => i !== index);
     });
   }
 }

@@ -1,0 +1,61 @@
+<div class="section-container">
+  <header>
+    <div class="header-left">
+      <button
+        type="button"
+        (click)="addItem()"
+        class="app-cmp-button app-cl-filled"
+        style="background-color: blue; color: white"
+      >
+        <i class="material-symbols-outlined">add</i>
+        Input
+      </button>
+    </div>
+
+    <div class="header-center">
+      Section {{ index() + 1 }}
+      <span class="app-cl-number">({{ items().length }})</span>
+    </div>
+
+    <div class="header-right">
+      <button
+        type="button"
+        [disabled]="!removable()"
+        (click)="remove.emit()"
+        class="app-cmp-button app-cl-warn app-cl-filled"
+      >
+        <i class="material-symbols-outlined">delete_forever</i>
+      </button>
+    </div>
+  </header>
+
+  <details open>
+    <summary>
+      <span class="summary-text">Numbers ({{ items().length | number }})</span>
+    </summary>
+
+    <div class="input-list">
+      @for (item of items(); track item.id; let i = $index) {
+        <app-dynamic-input
+          [index]="i"
+          [value]="item.value"
+          [removable]="items().length > 1"
+          (valueChange)="updateItemValue(i, $event)"
+          (remove)="removeItem(i)"
+        />
+      }
+
+      <div class="result-row">
+        <span class="result-label">Result</span>
+
+        <div class="result-value-container">
+          <span class="result-value app-cl-number">
+            {{ result() | number }}
+          </span>
+        </div>
+
+        <span class="spacer-button"></span>
+      </div>
+    </div>
+  </details>
+</div>

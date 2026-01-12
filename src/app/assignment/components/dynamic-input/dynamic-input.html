@@ -1,0 +1,20 @@
+<label>
+  <span class="label-text">Number {{ index() + 1 }}</span>
+
+  <input
+    type="number"
+    [value]="value()"
+    (input)="onInput(inputElem.value)"
+    #inputElem
+    class="input-number"
+  />
+
+  <button
+    type="button"
+    [disabled]="!removable()"
+    (click)="remove.emit()"
+    class="app-cmp-button app-cl-warn app-cl-filled"
+  >
+    <i class="material-symbols-outlined">delete_forever</i>
+  </button>
+</label>

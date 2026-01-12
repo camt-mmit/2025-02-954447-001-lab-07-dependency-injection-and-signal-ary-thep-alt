@@ -1,0 +1,12 @@
+@use './common';
+
+ul.-cmp-list {
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: column;
+
+  & > li {
+    @include common.layout-block();
+  }
+}

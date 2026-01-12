@@ -1,0 +1,24 @@
+<div class="page-container">
+  <div class="page-actions">
+    <button type="button" (click)="addSection()" class="app-cmp-button app-cl-filled section-btn">
+      <i class="material-symbols-outlined">library_add</i>
+      Section
+    </button>
+
+    <span class="total-sections app-cl-number">({{ sections().length | number }})</span>
+  </div>
+
+  <div class="sections-list">
+    @for (section of sections(); track section.id; let i = $index) {
+      <app-dynamic-section
+        [index]="i"
+        [items]="section.items"
+        [removable]="sections().length > 1"
+        (itemsChange)="updateSectionItems(i, $event)"
+        (remove)="removeSection(i)"
+      />
+    } @empty {
+      <p class="empty-state">No sections available. Click "Section" to create one.</p>
+    }
+  </div>
+</div>
